@@ -1,16 +1,24 @@
 :root {
-  --hover-color: black;
+  --hover-color: #ed254e;
+  --background: #f3fcf0;
 }
 body {
-  background-color: indigo;
+  background-color: var(--background);
 }
 #grid-container {
-  width: 600px;
-  height: 600px;
+  width: 400px;
+  height: 400px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(16, calc(100% / 16));
   grid-template-rows: repeat(16, calc(100% / 16));
+  background-color: var(--background);
+}
+.option-container {
+  background-color: lightblue;
+}
+.active-mode {
+  background-color: red;
 }
 .square {
   background-color: white;
