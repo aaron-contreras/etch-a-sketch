@@ -1,0 +1,21 @@
+:root {
+  --hover-color: black;
+}
+body {
+  background-color: indigo;
+}
+#grid-container {
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(16, calc(100% / 16));
+  grid-template-rows: repeat(16, calc(100% / 16));
+}
+.square {
+  background-color: white;
+  border: 1px solid black;
+}
+.hovered {
+  background-color: var(--hover-color);
+}
