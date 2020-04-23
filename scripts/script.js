@@ -1,8 +1,32 @@
 const gridContainer = document.getElementById('grid-container');
 const defaultDimensions = 16;
-let opacity = 0;
 let colorMode = 'single-color';
 let paintMode = 'standard';
+const colorList = [
+  '255,0,0', '165,42,42', '255,165,0',
+  '255,255,0', '0,128,0', '0,255,255',
+  '0,0,255', '128,0,128', '255,192,203',
+  '128,128,128'
+];
+const colorPaletteContainer = document.getElementById('palette');
+let paintingColor = colorList[0];
+
+function setColor(colorClicked) {
+  paintingColor = colorClicked.target.getAttribute('data-color');
+}
+
+function createColorPalette() {
+  colorList.forEach(color => {
+    const colorElement = document.createElement('div');
+    colorElement.setAttribute('data-color', color);
+    colorElement.style.backgroundColor = `rgb(${color})`;
+    colorElement.classList.add('color-option');
+    colorElement.addEventListener('click', setColor);
+    colorPaletteContainer.appendChild(colorElement);
+  });
+}
+
+createColorPalette();
 
 function getRandomColor() {
   function randomizer() {
@@ -12,15 +36,16 @@ function getRandomColor() {
   return color;
 }
 function addColoringAbility() {
-  cells.forEach(cell => cell.addEventListener('mouseover', colorCellStandard));
+  cells.forEach(cell => cell.addEventListener('mouseover', fillCell));
 }
 function removeColoringAbility() {
-  cells.forEach(cell => cell.removeEventListener('mouseover', colorCellStandard));
+  cells.forEach(cell => cell.removeEventListener('mouseover', fillCell));
 }
 function togglePrecisionMode(mouse) {
   if (mouse.buttons) {
-    mouse.target.style.backgroundColor = 'orange';
-    cells.forEach(cell => cell.addEventListener('mouseover', colorCellStandard));
+    if (colorMode == 'pressure') increaseOpacity(mouse);
+    else mouse.target.style.backgroundColor = `rgb(${paintingColor})`;
+    cells.forEach(cell => cell.addEventListener('mouseover', fillCell));
     mouse.preventDefault();
   } else {
     removeColoringAbility();
@@ -62,13 +87,11 @@ function toggleModes(event) {
 }
 const colorModeButtons = document.querySelectorAll('.mode.color');
 colorModeButtons.forEach(button => {
-  console.log(button);
   button.addEventListener('click', toggleModes);
 });
 
 const paintingModeButtons = document.querySelectorAll('.mode.painting');
 paintingModeButtons.forEach(button => {
-  console.log(button);
   button.addEventListener('click', toggleModes);
 });
 
@@ -80,18 +103,17 @@ function increaseOpacity(hoveredCell) {
       .toFixed(1)
   );
   hoveredCell.target.setAttribute('data-opacity', `${newOpacity}`);
-  hoveredCell.target.style.backgroundColor = `rgba(0,0,0,${hoveredCell.target.getAttribute('data-opacity')})`;
+  hoveredCell.target.style.backgroundColor = `rgba(${paintingColor},${newOpacity})`;
 }
 
-function colorCellStandard(hoveredCell) {
-  console.log(colorMode);
-  if (colorMode == 'single-color') {
-    hoveredCell.target.classList.add('hovered');
-  } else if (colorMode == 'picasso') {
-    hoveredCell.target.style.setProperty('background-color', getRandomColor());
-  } else {
-    increaseOpacity(hoveredCell);
-  }
+function fillCell(hoveredCell) {
+    if (colorMode == 'single-color') {
+      hoveredCell.target.style.backgroundColor = `rgb(${paintingColor}`;
+    } else if (colorMode == 'picasso') {
+      hoveredCell.target.style.backgroundColor = getRandomColor();
+    } else {
+      increaseOpacity(hoveredCell);
+    }
 }
 
 function createGrid(dimensions) {
@@ -99,7 +121,7 @@ function createGrid(dimensions) {
     const cell = document.createElement('div');
     cell.setAttribute('data-opacity', 0);
     cell.className = 'square';
-    cell.addEventListener('mouseover', colorCellStandard);
+    cell.addEventListener('mouseover', fillCell);
     gridContainer.appendChild(cell);
   }
 }
