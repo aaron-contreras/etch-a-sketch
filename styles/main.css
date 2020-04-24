@@ -1,10 +1,30 @@
 :root {
-  --hover-color: #ed254e;
-  --background: #f3fcf0;
+  --highlight-color: #4B0082;
+  --background: #F3FCF0;
+  --container-background: 255,255,255;
 }
+
 body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  color: black;
+  font-family: arial;
+  font-size: 18px;
   background-color: var(--background);
+  height: 100vh;
 }
+
+h1 {
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 5em;
+  margin: 0;
+  color: var(--highlight-color);
+}
+
 #grid-container {
   width: 400px;
   height: 400px;
@@ -13,35 +33,95 @@ body {
   grid-template-columns: repeat(16, calc(100% / 16));
   grid-template-rows: repeat(16, calc(100% / 16));
   background-color: white;
+  border: 2px solid black;
 }
+
 .mode-container {
+  margin-bottom: 25px;
   display: flex;
   flex-wrap: wrap;
-  background-color: black;
 }
+
 .option-container {
   flex: 1;
-  min-width: 250px;
-  background-color: lightblue;
+
+  min-width: 400px;
 }
+
 .color-container {
+  margin-top: 10px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
 }
+
 .color-option {
   height: 50px;
   transition: 0.25s;
+  border: 5px solid transparent;
 }
+
 .color-option:hover {
   transform: scale(1.1);
   box-shadow: 0 0 10px black;
 }
+
+.active-color {
+  border: 5px solid black;
+}
+
+.show-hide-grid {
+  border: 1px solid #eee;
+}
+button {
+  font-family: inherit;
+  font-size: inherit;
+  border: 2px solid black;
+  padding: 5px 20px;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+
+button:active {
+  background-color: var(--highlight-color);
+  color: white;
+}
+
 .active-mode {
-  background-color: red;
+  background-color: var(--highlight-color);
+  color: white;
+  box-shadow: 0 0 5px black;
 }
 
 .square {
   transition: 0.2s;
   background-color: white;
-  border: 1px solid black;
+}
+
+.utilities {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.utilities > button {
+  margin: 0 10px;
+}
+
+footer {
+  background-color: var(--highlight-color);
+  height: 75px;
+  display: flex;
+  align-items: center;
+}
+footer > a {
+  margin-left: 25px;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: #777;
+  transition: 0.1s;
+}
+
+footer > a:hover {
+  transform: scale(1.02);
+  color: black;
 }

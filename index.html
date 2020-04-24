@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./styles/main.css" type="text/css"/>
+  <link rel="stylesheet" href="./styles/main.css" type="text/css" />
+  <script src="https://kit.fontawesome.com/b4937b662a.js" crossorigin="anonymous"></script>
   <title>Etch-a-sketch</title>
 </head>
+
 <body>
   <h1>Etch-a-sketch</h1>
   <div class="mode-container">
@@ -22,8 +25,14 @@
       <div class="option-container color-container" id="palette"></div>
     </div>
   </div>
-  <button id="clear">Clear grid</button>
   <div id="grid-container"></div>
+  <div class="utilities">
+    <button id="clear">Clear grid</button>
+    <button id="erase">Erase</button>
+    <button id="toggle-grid">Toggle grid</button>
+  </div>
+  <footer><a href="https://www.github.com/aaron-contreras">Built by Aaron Contreras <i class="fab fa-github"></i></a></footer>
   <script src="./scripts/script.js"></script>
 </body>
+
 </html>
