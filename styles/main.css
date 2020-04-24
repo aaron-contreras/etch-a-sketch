@@ -14,28 +14,34 @@ body {
   grid-template-rows: repeat(16, calc(100% / 16));
   background-color: white;
 }
+.mode-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: black;
+}
 .option-container {
+  flex: 1;
+  min-width: 250px;
   background-color: lightblue;
 }
 .color-container {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
 }
 .color-option {
-  border-radius: 50%;
+  height: 50px;
+  transition: 0.25s;
+}
+.color-option:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px black;
 }
 .active-mode {
   background-color: red;
 }
-.color-option {
-  width: 100px;
-  height: 100px;
-  border: none;
-}
+
 .square {
   transition: 0.2s;
   background-color: white;
   border: 1px solid black;
-}
-.hovered {
-  background-color: var(--hover-color);
 }

@@ -8,19 +8,20 @@
 </head>
 <body>
   <h1>Etch-a-sketch</h1>
-  <div class="option-container" id="style">
-    <h2>Select a painting mode</h2>
-    <button class="mode painting" id="precision">Precision</button>
-    <button class="mode painting" id="standard">Standard</button>
+  <div class="mode-container">
+    <div class="option-container" id="style">
+      <h2>Mode</h2>
+      <button class="mode painting" id="standard">Standard</button>
+      <button class="mode painting" id="precision">Precision</button>
+    </div>
+    <div class="option-container" id="color">
+      <h2>Color style</h2>
+      <button class="mode color" id="single-color">Single color</button>
+      <button class="mode color" id="pressure">Pressure</button>
+      <button class="mode color" id="picasso">Picasso</button>
+      <div class="option-container color-container" id="palette"></div>
+    </div>
   </div>
-  <div class="option-container" id="color">
-    <h2>Select a color style</h2>
-    <button class="mode color" id="picasso">Picasso</button>
-    <button class="mode color" id="pressure">Pressure</button>
-    <button class="mode color" id="single-color">Single color</button>
-  </div>
-  <div class="option-container color-container" id="palette"></div>
-  
   <button id="clear">Clear grid</button>
   <div id="grid-container"></div>
   <script src="./scripts/script.js"></script>
