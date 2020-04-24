@@ -1,5 +1,5 @@
 :root {
-  --highlight-color: #4B0082;
+  --highlight-color: #011936;
   --background: #F3FCF0;
   --container-background: 255,255,255;
 }
@@ -15,14 +15,21 @@ body {
   background-color: var(--background);
   height: 100vh;
 }
-
+header {
+  background-color: #ED254E;
+}
 h1 {
   position: relative;
   text-align: center;
   text-transform: uppercase;
-  font-size: 5em;
-  margin: 0;
-  color: var(--highlight-color);
+  font-size: 3em;
+  margin: 15px;
+  color: var(--background);
+  text-shadow: 10px 5px 0px black;
+}
+
+h2 {
+  margin: 10px 0;
 }
 
 #grid-container {
@@ -40,15 +47,17 @@ h1 {
   margin-bottom: 25px;
   display: flex;
   flex-wrap: wrap;
+  background-color: white;
 }
 
 .option-container {
+  margin: 0 10px;
   flex: 1;
-
   min-width: 400px;
 }
 
 .color-container {
+  margin: 0;
   margin-top: 10px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
@@ -80,7 +89,9 @@ button {
   border-radius: 5px;
   transition: 0.2s;
 }
-
+button:hover {
+  transform: scale(1.05);
+}
 button:active {
   background-color: var(--highlight-color);
   color: white;
@@ -107,7 +118,7 @@ button:active {
 }
 
 footer {
-  background-color: var(--highlight-color);
+  background-color: #011936;
   height: 75px;
   display: flex;
   align-items: center;
@@ -117,11 +128,11 @@ footer > a {
   text-decoration: none;
   font-family: inherit;
   font-size: inherit;
-  color: #777;
+  color: var(--background);
   transition: 0.1s;
 }
 
 footer > a:hover {
-  transform: scale(1.02);
-  color: black;
+  transform: scale(1.05);
+  color: white;
 }
