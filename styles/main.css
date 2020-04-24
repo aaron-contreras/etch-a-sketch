@@ -28,8 +28,11 @@ h1 {
   margin: 15px;
   color: var(--background);
   text-shadow: 10px 5px 0px black;
+
+}
+.shake-animation {
   animation-name: shake;
-  animation-duration: 1s;
+  animation-duration: 0.75s;
   animation-iteration-count: 2;
   animation-timing-function: ease-out;
 }

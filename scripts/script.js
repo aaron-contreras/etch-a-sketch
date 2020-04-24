@@ -9,6 +9,9 @@ const colorList = [
   '0,0,255', '128,0,128', '255,192,203',
   '128,128,128'
 ];
+const title = document.querySelector('h1');
+console.log(title);
+window.addEventListener('load', () => {title.classList.add('shake-animation')});
 const toggleGridButton = document.getElementById('toggle-grid');
 toggleGridButton.addEventListener('click', () => {
   cells.forEach(cell => cell.classList.toggle('show-hide-grid'));
