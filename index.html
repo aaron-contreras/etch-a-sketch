@@ -10,28 +10,34 @@
 </head>
 
 <body>
-  <header><h1>Etch-a-sketch</h1></header>
-  <div class="mode-container">
-    <div class="option-container" id="style">
-      <h2>Mode</h2>
-      <button class="mode painting" id="standard">Standard</button>
-      <button class="mode painting" id="precision">Precision</button>
+  <header>
+    <h1>Etch-a-sketch</h1>
+  </header>
+
+  <div class="option-container color-container" id="palette"></div>
+  <main>
+    <div class="mode-container">
+      <div class="option-container" id="style">
+        <h2>Mode</h2>
+        <button class="mode painting" id="standard">Standard</button>
+        <button class="mode painting" id="precision">Precision</button>
+      </div>
+      <div class="option-container" id="color">
+        <h2>Color style</h2>
+        <button class="mode color" id="single-color">Single color</button>
+        <button class="mode color" id="pressure">Pressure</button>
+        <button class="mode color" id="picasso">Picasso</button>
+      </div>
     </div>
-    <div class="option-container" id="color">
-      <h2>Color style</h2>
-      <button class="mode color" id="single-color">Single color</button>
-      <button class="mode color" id="pressure">Pressure</button>
-      <button class="mode color" id="picasso">Picasso</button>
+    <div id="grid-container"></div>
+    <div class="utilities">
+      <button id="clear">Clear grid</button>
+      <button id="erase">Erase</button>
+      <button id="toggle-grid">Toggle grid</button>
     </div>
-    <div class="option-container color-container" id="palette"></div>
-  </div>
-  <div id="grid-container"></div>
-  <div class="utilities">
-    <button id="clear">Clear grid</button>
-    <button id="erase">Erase</button>
-    <button id="toggle-grid">Toggle grid</button>
-  </div>
-  <footer><a href="https://www.github.com/aaron-contreras">Built by Aaron Contreras <i class="fab fa-github"></i></a></footer>
+  </main>
+  <footer><a href="https://www.github.com/aaron-contreras">Built by Aaron Contreras <i class="fab fa-github"></i></a>
+  </footer>
   <script src="./scripts/script.js"></script>
 </body>
 

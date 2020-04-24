@@ -1,6 +1,5 @@
 const gridContainer = document.getElementById('grid-container');
 const gridContainerBackground = getComputedStyle(document.documentElement).getPropertyValue('--container-background');
-console.log(gridContainerBackground);
 const defaultDimensions = 16;
 let colorMode = 'single-color';
 let paintMode = 'standard';
@@ -21,7 +20,6 @@ const erase = document.getElementById('erase');
 
 function enableErasing(event) {
   paintingColor = gridContainerBackground;
-  console.log(paintingColor);
 }
 erase.addEventListener('click', enableErasing);
 
@@ -87,7 +85,6 @@ function setPrecisionModeIfActive() {
 function toggleModes(event) {
   if ([...event.target.classList].includes('painting')) {
     paintMode = event.target.id;
-    console.log(paintMode);
     setPrecisionModeIfActive();
     paintingModeButtons.forEach(button => {
       if (button == event.target) {
@@ -98,7 +95,6 @@ function toggleModes(event) {
     });
   } else {
     colorMode = event.target.id;
-    console.log(colorMode);
     colorModeButtons.forEach(button => {
       if (button == event.target) {
         button.classList.add('active-mode');
@@ -134,7 +130,6 @@ function increaseOpacity(hoveredCell) {
 }
 
 function fillCell(hoveredCell) {
-  console.log(paintingColor);
     if (colorMode == 'single-color') {
       hoveredCell.target.style.backgroundColor = `rgb(${paintingColor})`;
 
