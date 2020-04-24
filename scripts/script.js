@@ -10,7 +10,6 @@ const colorList = [
   '128,128,128'
 ];
 const title = document.querySelector('h1');
-console.log(title);
 window.addEventListener('load', () => {title.classList.add('shake-animation')});
 const toggleGridButton = document.getElementById('toggle-grid');
 toggleGridButton.addEventListener('click', () => {
@@ -19,10 +18,18 @@ toggleGridButton.addEventListener('click', () => {
 const colorPaletteContainer = document.getElementById('palette');
 const clickableColors = colorPaletteContainer.children;
 let paintingColor = colorList[0];
+let paintingColorTemp = paintingColor;
 const erase = document.getElementById('erase');
 
 function enableErasing(event) {
-  paintingColor = gridContainerBackground;
+  event.target.classList.toggle('active-mode');
+  console.log(event.target.className);
+  if (event.target.className == 'active-mode') {
+    paintingColorTemp = paintingColor;
+    paintingColor = gridContainerBackground;
+  } else {
+    paintingColor = paintingColorTemp;
+  }
 }
 erase.addEventListener('click', enableErasing);
 
@@ -54,7 +61,7 @@ function getRandomColor() {
   function randomizer() {
     return Math.floor(Math.random() * 256);
   }
-  const color = `rgb(${randomizer()}, ${randomizer()}, ${randomizer()})`;
+  const color = `${randomizer()}, ${randomizer()}, ${randomizer()}`;
   return color;
 }
 function addColoringAbility() {
@@ -65,24 +72,30 @@ function removeColoringAbility() {
 }
 function togglePrecisionMode(mouse) {
   if (mouse.buttons) {
-    if (colorMode == 'pressure') increaseOpacity(mouse);
-    else mouse.target.style.backgroundColor = `rgb(${paintingColor})`;
+    fillCell(mouse);
+    addColoringAbility();
+    /*
+    if (colorMode == 'pressure') {
+      increaseOpacity(mouse);
+    } else if (colorMode == 'single-color') {
+      mouse.target.style.backgroundColor = getRandomColor();
+    }
     cells.forEach(cell => cell.addEventListener('mouseover', fillCell));
-    mouse.preventDefault();
+    mouse.preventDefault(); */
   } else {
     removeColoringAbility();
   }
+  mouse.preventDefault();
 }
 function setPrecisionModeIfActive() {
   if (paintMode == 'precision') {
     removeColoringAbility();
-    gridContainer.addEventListener('mousedown', togglePrecisionMode);
-    gridContainer.addEventListener('mouseup', togglePrecisionMode);
-    
+    cells.forEach(cell => cell.addEventListener('mousedown', togglePrecisionMode));
+    window.addEventListener('mouseup', togglePrecisionMode);
   } else {
     addColoringAbility();
-    gridContainer.removeEventListener('mousedown', togglePrecisionMode);
-    gridContainer.removeEventListener('mouseup', togglePrecisionMode);
+    cells.forEach(cell => cell.removeEventListener('mousedown', togglePrecisionMode));
+    window.addEventListener('mouseup', togglePrecisionMode);
   }
 }
 function toggleModes(event) {
@@ -120,9 +133,6 @@ paintingModeButtons.forEach(button => {
 colorModeButtons[0].classList.add('active-mode');
 paintingModeButtons[0].classList.add('active-mode');
 
-
-/*OPACITY MODE FUNCTION*/
-
 function increaseOpacity(hoveredCell) {
   const newOpacity = (
     (+hoveredCell.target.getAttribute('data-opacity') + 0.1)
@@ -140,7 +150,7 @@ function fillCell(hoveredCell) {
       if (paintingColor == gridContainerBackground) {
         hoveredCell.target.style.backgroundColor = '';
       } else {
-        hoveredCell.target.style.backgroundColor = getRandomColor();
+        hoveredCell.target.style.backgroundColor = `rgb(${getRandomColor()})`;
       }
     } else {
       increaseOpacity(hoveredCell);
@@ -189,11 +199,3 @@ function clearGrid() {
 }
 
 clearGridButton.addEventListener('click', clearGrid);
-
-
-
-
-
-
-
-

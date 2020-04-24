@@ -17,15 +17,17 @@ body {
   background-color: white;
   height: 100vh;
 }
-header {
+#title-container {
   background-color: var(--header-color);
+  padding: 15px;
 }
 h1 {
+
   position: relative;
   text-align: center;
   text-transform: uppercase;
   font-size: 3em;
-  margin: 15px;
+  margin: 0;
   color: var(--background);
   text-shadow: 10px 5px 0px black;
 
@@ -33,6 +35,7 @@ h1 {
 .shake-animation {
   animation-name: shake;
   animation-duration: 0.75s;
+  animation-delay: 0.5s;
   animation-iteration-count: 2;
   animation-timing-function: ease-out;
 }
@@ -142,7 +145,9 @@ button:active {
 
 footer {
   background-color: #011936;
-  min-height: 75px;
+  height: 100%;
+  min-height: 50px;
+  max-height: 75px;
   display: flex;
   align-items: center;
 }
@@ -182,6 +187,8 @@ footer > a:hover {
   }
   body {
     font-size: 14px;
+    min-height: 100vh;
+    height: 100%
   }
   .mode-container {
     margin: 10px;
