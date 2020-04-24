@@ -1,4 +1,12 @@
-const gridContainer = document.getElementById('grid-container');
+const gridContainer = document.querySelector('.non-grid');
+gridContainer.addEventListener('mouseover', buildContainerGrid);
+let cells = '';
+function buildContainerGrid() {
+  gridContainer.removeChild(gridContainer.firstElementChild);
+  gridContainer.id = 'grid-container';
+  createGrid(defaultDimensions ** 2);
+  gridContainer.removeEventListener('mouseover', buildContainerGrid);
+}
 const gridContainerBackground = getComputedStyle(document.documentElement).getPropertyValue('--container-background');
 const defaultDimensions = 16;
 let colorMode = 'single-color';
@@ -9,21 +17,26 @@ const colorList = [
   '0,0,255', '128,0,128', '255,192,203',
   '128,128,128'
 ];
+
 const title = document.querySelector('h1');
-window.addEventListener('load', () => {title.classList.add('shake-animation')});
+window.addEventListener('load', () => {
+  title.classList.add('shake-animation')
+});
+
 const toggleGridButton = document.getElementById('toggle-grid');
 toggleGridButton.addEventListener('click', () => {
   cells.forEach(cell => cell.classList.toggle('show-hide-grid'));
 });
+
 const colorPaletteContainer = document.getElementById('palette');
 const clickableColors = colorPaletteContainer.children;
+
 let paintingColor = colorList[0];
 let paintingColorTemp = paintingColor;
 const erase = document.getElementById('erase');
 
 function enableErasing(event) {
   event.target.classList.toggle('active-mode');
-  console.log(event.target.className);
   if (event.target.className == 'active-mode') {
     paintingColorTemp = paintingColor;
     paintingColor = gridContainerBackground;
@@ -31,6 +44,7 @@ function enableErasing(event) {
     paintingColor = paintingColorTemp;
   }
 }
+
 erase.addEventListener('click', enableErasing);
 
 function setColor(colorClicked) {
@@ -56,7 +70,7 @@ function createColorPalette() {
 }
 
 createColorPalette();
-
+clickableColors[0].classList.add('active-color');
 function getRandomColor() {
   function randomizer() {
     return Math.floor(Math.random() * 256);
@@ -143,20 +157,19 @@ function increaseOpacity(hoveredCell) {
 }
 
 function fillCell(hoveredCell) {
-    if (colorMode == 'single-color') {
-      hoveredCell.target.style.backgroundColor = `rgb(${paintingColor})`;
+  if (colorMode == 'single-color') {
+    hoveredCell.target.style.backgroundColor = `rgb(${paintingColor})`;
 
-    } else if (colorMode == 'picasso') {
-      if (paintingColor == gridContainerBackground) {
-        hoveredCell.target.style.backgroundColor = '';
-      } else {
-        hoveredCell.target.style.backgroundColor = `rgb(${getRandomColor()})`;
-      }
+  } else if (colorMode == 'picasso') {
+    if (paintingColor == gridContainerBackground) {
+      hoveredCell.target.style.backgroundColor = '';
     } else {
-      increaseOpacity(hoveredCell);
+      hoveredCell.target.style.backgroundColor = `rgb(${getRandomColor()})`;
     }
+  } else {
+    increaseOpacity(hoveredCell);
+  }
 }
-let cells = '';
 function createGrid(dimensions) {
   for (let i = 0; i < dimensions; i++) {
     const cell = document.createElement('div');
@@ -168,7 +181,7 @@ function createGrid(dimensions) {
   cells = [...gridContainer.children];
 }
 
-createGrid(defaultDimensions ** 2);
+
 
 const clearGridButton = document.getElementById('clear');
 

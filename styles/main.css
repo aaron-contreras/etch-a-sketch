@@ -63,14 +63,39 @@ main {
   margin: 25px 0;
 }
 
-#grid-container {
+.non-grid {
   width: 400px;
   height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(var(--container-background));
+  border: 5px solid black;
+}
+h3 {
+  color: rgba(0,0,0,0.15);
+  font-size: 1.5em;
+  text-align: center;
+  animation-name: bounce;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-delay: 3s;
+}
+@keyframes bounce {
+  10% {
+    transform: translateY(10px);
+  }
+  60% {
+    transform: translateY(-20px);
+  }
+  90% {
+    transform: translateY(10px);
+  }
+}
+#grid-container {
   display: grid;
   grid-template-columns: repeat(16, calc(100% / 16));
   grid-template-rows: repeat(16, calc(100% / 16));
-  background-color: rgb(var(--container-background));
-  border: 5px solid black;
 }
 
 .option-container {
